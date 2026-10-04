@@ -1,0 +1,185 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Brand palette — deep maroon, antique gold, ivory, parchment */
+    --maroon: #5a0f1f;
+    --maroon-light: #800020;
+    --maroon-dark: #3d0a15;
+    --gold: #c9a24d;
+    --gold-light: #dbb871;
+    --gold-dark: #a8843a;
+    --ivory: #f8f1e4;
+    --parchment: #eadbc0;
+    --charcoal: #2b1b17;
+    --charcoal-light: #4a3530;
+
+    /* HSL equivalents for shadcn compatibility */
+    --background: 40 30% 95%;
+    --foreground: 16 27% 13%;
+    --card: 40 36% 97%;
+    --card-foreground: 16 27% 13%;
+    --popover: 40 36% 97%;
+    --popover-foreground: 16 27% 13%;
+    --primary: 340 67% 21%;
+    --primary-foreground: 40 30% 95%;
+    --secondary: 40 25% 81%;
+    --secondary-foreground: 16 27% 13%;
+    --muted: 40 25% 88%;
+    --muted-foreground: 16 15% 35%;
+    --accent: 40 30% 81%;
+    --accent-foreground: 16 27% 13%;
+    --destructive: 0 72% 42%;
+    --destructive-foreground: 40 30% 95%;
+    --border: 40 25% 82%;
+    --input: 40 25% 82%;
+    --ring: 40 48% 54%;
+    --radius: 0.5rem;
+
+    /* Custom semantic tokens */
+    --color-maroon: #5a0f1f;
+    --color-maroon-light: #800020;
+    --color-maroon-dark: #3d0a15;
+    --color-gold: #c9a24d;
+    --color-gold-light: #dbb871;
+    --color-gold-dark: #a8843a;
+    --color-ivory: #f8f1e4;
+    --color-parchment: #eadbc0;
+    --color-charcoal: #2b1b17;
+
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-sans: 'Inter', system-ui, sans-serif;
+    --font-script: 'Great Vibes', cursive;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    background-color: var(--color-ivory);
+    color: var(--color-charcoal);
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+  }
+}
+
+@layer components {
+  .font-serif { font-family: var(--font-serif); }
+  .font-script { font-family: var(--font-script); }
+  .font-sans { font-family: var(--font-sans); }
+
+  .text-maroon { color: var(--color-maroon); }
+  .text-maroon-light { color: var(--color-maroon-light); }
+  .text-gold { color: var(--color-gold); }
+  .text-gold-dark { color: var(--color-gold-dark); }
+  .text-charcoal { color: var(--color-charcoal); }
+  .text-ivory { color: var(--color-ivory); }
+
+  .bg-maroon { background-color: var(--color-maroon); }
+  .bg-maroon-light { background-color: var(--color-maroon-light); }
+  .bg-maroon-dark { background-color: var(--color-maroon-dark); }
+  .bg-gold { background-color: var(--color-gold); }
+  .bg-ivory { background-color: var(--color-ivory); }
+  .bg-parchment { background-color: var(--color-parchment); }
+
+  .border-gold { border-color: var(--color-gold); }
+  .border-maroon { border-color: var(--color-maroon); }
+
+  .ring-gold { --tw-ring-color: var(--color-gold); }
+
+  .small-caps {
+    font-variant: small-caps;
+    letter-spacing: 0.1em;
+  }
+
+  .gold-border {
+    border: 1px solid var(--color-gold);
+  }
+
+  .double-frame {
+    outline: 1px solid var(--color-gold);
+    outline-offset: 4px;
+  }
+
+  .drop-cap::first-letter {
+    font-family: var(--font-serif);
+    font-size: 4.5rem;
+    line-height: 0.8;
+    float: left;
+    padding-right: 0.5rem;
+    padding-top: 0.25rem;
+    color: var(--color-maroon);
+  }
+
+  .text-shadow-lg {
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .ornamental-line {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .ornamental-line::before,
+  .ornamental-line::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--color-gold), transparent);
+  }
+}
+
+/* Paper grain texture overlay */
+.paper-grain {
+  position: relative;
+}
+.paper-grain::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-ivory);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-gold);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold-dark);
+}
+
+/* Focus ring in gold */
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Hide scrollbar for horizontal scroll containers */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
